@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{{route('index')}}">Home <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="{{URL('/payment')}}">About</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -34,8 +34,13 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
+                @if(Auth::check()>0)
+                <li><a href="{{route('users.signin')}}">Profile</a></li>
+                <li><a href="{{route('users.logout')}}">Logout</a></li>
+                @else
                 <li><a href="{{route('users.signin')}}">Login</a></li>
                 <li><a href="{{route('users.signup')}}">Register</a></li>
+                @endif
             </ul>
         </div>
     </div>

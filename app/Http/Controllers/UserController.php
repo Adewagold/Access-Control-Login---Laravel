@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Role;
+use Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -35,6 +36,23 @@ class UserController extends Controller
         return redirect()->route('index');
     }
 
+    public function postLogin(Request $request)
+    {
+        $this->validate ($request,[
+            'email'=>'email|required',
+            'password'=>'required|min:4'
+        ]);
+
+        if(Auth::Attempt(['email'=>$request->input('email'), 'password'=>$request->input('password')]))
+        {
+            return redirect()->route('index');
+        }
+        else
+        {
+            return redirect()->back();
+        }
+    }
+
     public function postAssignRoles(Request $request)
     {
         $user = User::where('email', $request['email'])->first();
@@ -52,5 +70,15 @@ class UserController extends Controller
             $user->roles()->attach(Role::where('name','SA')->first());
         }
         return redirect()->back();
+    }
+
+    public function getAboutPage()
+    {
+        return response('About Us Page', 200);
+    }
+
+    public function getLogout(){
+        Auth::logout();
+        return view('users.signin');
     }
 }

@@ -3,21 +3,21 @@
 @section('contents')
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="post" action="{{route('users.signin')}}">
             <fieldset>
                 <center><legend>Login</legend></center>
 
                 <div class="form-group">
                     <label for="inputEmail" class="col-lg-2 control-label">Email</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+                        <input type="text" name="email" class="form-control" id="inputEmail" placeholder="Email">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="col-lg-2 control-label">Password</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-
+                        <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
+{{csrf_field()}}
                     </div>
                 </div>
 

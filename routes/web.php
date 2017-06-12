@@ -43,7 +43,14 @@ Route::post('/assign-role', [
     'as'=>'index.assign'
 ]);
 
-Route::get('/payment',function ()
-{
-    return response('Welcome');
-});
+Route::get('/payment',[
+    'uses'=>'UserController@getAboutPage',
+    'as'=>'index.about',
+    'middleware'=>'roles',
+    'roles'=> ['CO,SA']
+]);
+
+Route::get('/logout', [
+    'uses'=>'UserController@getLogout',
+    'as'=>'users.logout'
+]);
