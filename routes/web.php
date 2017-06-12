@@ -18,7 +18,8 @@ Route::get('/', [
 
 Route::get('/login', [
 'uses'=>'UserController@getLogin',
-    'as'=>'users.signin'
+    'as'=>'users.signin',
+
 ]);
 
 Route::get('/Register', [
