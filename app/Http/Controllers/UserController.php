@@ -34,4 +34,22 @@ class UserController extends Controller
         $user->roles()->attach(Role::where('name', 'Student')->first());
         return redirect()->route('index');
     }
+
+    public function postAssignRoles(Request $request)
+    {
+        $user = User::where('email', $request['email'])->first();
+        $user->roles()->detach();
+        if($request['role_student'])
+        {
+            $user->roles()->attach(Role::where('name','Student')->first());
+        }
+        if($request['role_CO'])
+        {
+            $user->roles()->attach(Role::where('name','CO')->first());
+        }
+        if($request['role_SA'])
+        {
+            $user->roles()->attach(Role::where('name','SA')->first());
+        }
+    }
 }

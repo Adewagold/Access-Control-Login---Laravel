@@ -36,3 +36,8 @@ Route::POST('/Register', [
     'uses'=>'UserController@postRegister',
     'as'=>'users.signup'
 ]);
+
+Route::post('/assign-role', [
+    'uses'=>'UserController@postAssignRoles',
+    'as'=>'index'
+]);
