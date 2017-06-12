@@ -56,14 +56,16 @@
     <tbody>
     @foreach($users as $user)
     <tr>
+        <form action="{{route('index.assign')}}" method="post">
         <td>{{$user->id}}</td>
         <td>{{$user->name}}</td>
-        <td>{{$user->email}}</td>
+        <td>{{$user->email}}<input type="hidden" value="{{$user->email}}" name="email"></td>
         <td><input type="checkbox" {{$user->hasRole('Student') ? 'checked' : ''}} name='role_student'></td>
         <td><input type="checkbox" {{$user->hasRole('CO') ? 'checked' : ''}} name='role_CO' ></td>
         <td><input type="checkbox" {{$user->hasRole('SA') ? 'checked' : ''}} name='role_SA'></td>
         {{csrf_field()}}
         <td><button class="btn btn-primary">Assign Role</button></td>
+        </form>
     </tr>
 @endforeach
     </tbody>

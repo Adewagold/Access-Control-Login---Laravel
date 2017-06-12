@@ -51,5 +51,6 @@ class UserController extends Controller
         {
             $user->roles()->attach(Role::where('name','SA')->first());
         }
+        return redirect()->back();
     }
 }

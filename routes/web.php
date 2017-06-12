@@ -29,7 +29,8 @@ Route::get('/Register', [
 
 Route::POST('/login', [
     'uses'=>'UserController@postLogin',
-    'as'=>'users.signin'
+    'as'=>'users.signin',
+
 ]);
 
 Route::POST('/Register', [
@@ -39,5 +40,10 @@ Route::POST('/Register', [
 
 Route::post('/assign-role', [
     'uses'=>'UserController@postAssignRoles',
-    'as'=>'index'
+    'as'=>'index.assign'
 ]);
+
+Route::get('/payment',function ()
+{
+    return response('Welcome');
+});
