@@ -42,4 +42,30 @@
     </div>
 </div>
 
+<table class="table table-striped table-hover ">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Student</th>
+        <th>C Officer</th>
+        <th>Super Admin</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($users as $user)
+    <tr>
+        <td>{{$user->id}}</td>
+        <td>{{$user->name}}</td>
+        <td>{{$user->email}}</td>
+        <td><input type="checkbox" {{$user->hasRole('Student') ? 'checked' : ''}} name='role_student'></td>
+        <td><input type="checkbox" {{$user->hasRole('CO') ? 'checked' : ''}} name='role_CO' ></td>
+        <td><input type="checkbox" {{$user->hasRole('SA') ? 'checked' : ''}} name='role_SA'></td>
+        {{csrf_field()}}
+        <td><button class="btn btn-primary">Assign Role</button></td>
+    </tr>
+@endforeach
+    </tbody>
+</table>
 @endsection

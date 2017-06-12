@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [
+    'uses'=>'UserController@index',
+    'as'=>'index'
+]);
 
 Route::get('/login', [
 'uses'=>'UserController@getLogin',
