@@ -11,6 +11,7 @@
 |
 */
 
+Route::group(['middleware'=>'web'], function(){
 Route::get('/', [
     'uses'=>'UserController@index',
     'as'=>'index'
@@ -40,17 +41,21 @@ Route::POST('/Register', [
 
 Route::post('/assign-role', [
     'uses'=>'UserController@postAssignRoles',
-    'as'=>'index.assign'
+    'as'=>'index.assign',
+    'middleware'=>'roles',
+    'roles'=> ['student']
 ]);
 
 Route::get('/payment',[
     'uses'=>'UserController@getAboutPage',
     'as'=>'index.about',
-    'middleware'=>'roles',
-    'roles'=> ['CO,SA']
+
 ]);
 
 Route::get('/logout', [
     'uses'=>'UserController@getLogout',
-    'as'=>'users.logout'
+    'as'=>'users.logout',
+
 ]);
+
+});
