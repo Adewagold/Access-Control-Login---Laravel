@@ -14,3 +14,23 @@
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/login', [
+'uses'=>'UserController@getLogin',
+    'as'=>'users.signin'
+]);
+
+Route::get('/Register', [
+    'uses'=>'UserController@getRegister',
+    'as'=>'users.signup'
+]);
+
+Route::POST('/login', [
+    'uses'=>'UserController@postLogin',
+    'as'=>'users.signin'
+]);
+
+Route::POST('/Register', [
+    'uses'=>'UserController@postRegister',
+    'as'=>'users.signup'
+]);
